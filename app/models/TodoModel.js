@@ -1,4 +1,4 @@
-class TodoModel {
+export default class TodoModel {
 	_setData(data) { 
 			if (!data.reduce) { data = [] ; }
 		this._data = data;
@@ -62,30 +62,3 @@ class TodoModel {
 		this._setTodoState(id, false);
 	}
 };
-
-document.cookie = JSON.stringify([]);
-var todo = new TodoModel();
-todo.add("Hello World.");
-todo.add("Hello World 2.");
-todo.add("Hello World 3.");
-todo.update(2, "YOLO");
-todo.done(0);
-todo.done(1);
-todo.del(0);
-todo.del(1);
-todo.done(2);
-
-var Test = React.createClass({
-	render: function() { 
-		var x = "NOP";
-		var e = this.props.children[0];
-		var done = function(x) {return (x) ? "[x]" : "[ ]"};
-		if (e) { x = e.content + " " + done(e.done) }
-		return ( <h1>{x}</h1> )
-	}
-});
-
-ReactDOM.render(
-	<Test>{todo.data}</Test>,
-	document.querySelector("#todoAppContent")
-);
