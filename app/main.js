@@ -1,11 +1,20 @@
+// Styles
+import './css/base.css'
+
+// React
 import React from 'react';
 import ReactDOM from 'react-dom';
 
+// Models
 import TodoModel from './models/TodoModel';
+
+// Components
 import Test from './components/Test'
 
-import './css/base.css'
 
+/*
+** Simulate some todos.
+*/
 document.cookie = JSON.stringify([]);
 var todo = new TodoModel();
 todo.add("Hello World.");
