@@ -67,16 +67,20 @@ document.cookie = JSON.stringify([]);
 var todo = new TodoModel();
 todo.add("Hello World.");
 todo.add("Hello World 2.");
-todo.update(0, "YOLO");
+todo.add("Hello World 3.");
+todo.update(2, "YOLO");
 todo.done(0);
 todo.done(1);
 todo.del(0);
 todo.del(1);
+todo.done(2);
 
 var Test = React.createClass({
 	render: function() { 
-		var x = "NOP"
-		if (this.props.children[0]) { var x = this.props.children[0].content }
+		var x = "NOP";
+		var e = this.props.children[0];
+		var done = function(x) {return (x) ? "[x]" : "[ ]"};
+		if (e) { x = e.content + " " + done(e.done) }
 		return ( <h1>{x}</h1> )
 	}
 });
