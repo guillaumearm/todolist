@@ -17,9 +17,9 @@ import Test from './components/Test'
 */
 document.cookie = JSON.stringify([]);
 var todo = new TodoModel();
-todo.add("Hello World.");
-todo.add("Hello World 2.");
-todo.add("Hello World 3.");
+todo.add("Hello world.");
+todo.add("Hello world 2.");
+todo.add("Hello world 3.");
 todo.done(0);
 todo.done(1);
 

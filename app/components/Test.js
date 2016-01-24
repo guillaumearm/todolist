@@ -8,6 +8,5 @@ var Test = React.createClass({
 		if (e) { x = e.content + " " + done(e.done) }
 		return ( <h1>{x}</h1> )
 	}
-})
-
+});
 export default Test;
