@@ -22,7 +22,6 @@ export default React.createClass({
 		if (this.props.edited) {
 			x = (
 				<SingleFormInput
-					style={{display: "inline"}}
 					autoFocus={true}
 					value={this.state.content}
 					noButton={true}
