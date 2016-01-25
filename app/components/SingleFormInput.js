@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom'
+import "./SingleFormInput.css"
 
 export default React.createClass({
 	getInitialState: function() {
@@ -26,7 +27,7 @@ export default React.createClass({
 	render: function() {
 		var f = (c) => this._input = c
 		return (
-			<form style={this.props.style} autoComplete="off" onSubmit={this.onSubmitHandler}>
+			<form className="SingleFormInput-wrapper" autoComplete="off" onSubmit={this.onSubmitHandler}>
 				<input 
 					ref={f}
 					placeholder={this.props.placeholder}

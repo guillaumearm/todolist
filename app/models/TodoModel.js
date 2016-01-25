@@ -7,9 +7,7 @@ export default class TodoModel {
 
 	_syncCookie() {
 		var jsonstr = JSON.stringify(this._data)
-		console.log(jsonstr)
 		document.cookie = encodeURIComponent(jsonstr)
-		console.log(decodeURIComponent(document.cookie))
 	}
 
 	_setTodoState(id, state) {

@@ -1,6 +1,5 @@
-
 // Styles
-import './css/base.css';
+import './css/base.css'
 
 // React
 import React from 'react';

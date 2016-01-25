@@ -1,6 +1,5 @@
 import React from 'react';
 import SingleFormInput from './SingleFormInput'
-import '../css/base.css'
 
 export default React.createClass({
 	getInitialState: function() {
