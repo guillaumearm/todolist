@@ -6,7 +6,10 @@ export default class TodoModel {
 	}
 
 	_syncCookie() {
-		document.cookie = JSON.stringify(this._data);
+		var jsonstr = JSON.stringify(this._data)
+		console.log(jsonstr)
+		document.cookie = encodeURIComponent(jsonstr)
+		console.log(decodeURIComponent(document.cookie))
 	}
 
 	_setTodoState(id, state) {
@@ -18,7 +21,16 @@ export default class TodoModel {
 	}
 
 	constructor() {
-		this._setData(JSON.parse(document.cookie));
+		var data = [];
+		try {
+			data = JSON.parse(decodeURIComponent(document.cookie));
+			this._setData(data);
+		} catch(e) {
+			data = []
+			document.cookie = ""
+			this._setData(data)
+			this._syncCookie()
+		}
 	}
 	get data() {
 		return this._data;
@@ -33,7 +45,8 @@ export default class TodoModel {
 			id: TodoModel.id++,
 			content: content,
 			date: new Date(),
-			done: false
+			done: false,
+			edited: false
 		});
 		this._syncCookie();
 	}
@@ -61,4 +74,14 @@ export default class TodoModel {
 	undo(id) {
 		this._setTodoState(id, false);
 	}
-};
+
+	setEditedState(id, state) {
+		var i = this._data.map(e => e.id).indexOf(id);
+		if (i >= 0) {
+			this._data[i].edited = state;
+			this._syncCookie();
+		}
+	}
+}
+
+

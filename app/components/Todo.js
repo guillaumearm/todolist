@@ -1,13 +1,45 @@
 import React from 'react';
+import SingleFormInput from './SingleFormInput'
+import '../css/base.css'
 
 export default React.createClass({
+	getInitialState: function() {
+		return ({content: this.props.children.content})
+	},
+	onChangeHandler: function(e) {
+		this.setState({content: e.target.value})
+	},
+	editTodo: function(text) {
+		this.setState({content: text})
+		this.props.onEditHandler(this.props.children, text)
+		return ""
+	},
 	render: function() {
 		var todo = this.props.children
-		var isDone = function(x) {return (x) ? "[x]" : "[ ]"}
-		var x = ""
+		var done = (todo.done ? "[x]" : "[ ]")
 
-		if (todo) { x = todo.content + " " + isDone(todo.done) }
-
-		return (<p><code style={this.props.style}>{x}</code></p>)
+		var x = {}
+		
+		if (this.props.edited) {
+			x = (
+				<SingleFormInput
+					style={{display: "inline"}}
+					autoFocus={true}
+					value={this.state.content}
+					noButton={true}
+					onSubmitHandler={this.editTodo} />
+			)
+		}
+		else {
+			x = (<code onDoubleClick={this.props.onDoubleClickHandler(todo)}>{todo.content}</code>)
+		}
+		
+		return (
+			<div>
+				{x}
+				<button onClick={this.props.onDoneHandler(todo)}>{done}</button>
+				<button onClick={this.props.onDeleteHandler(todo)}>DELETE</button>
+			</div>
+		)
 	}
 })
