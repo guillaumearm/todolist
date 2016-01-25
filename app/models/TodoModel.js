@@ -29,7 +29,7 @@ export default class TodoModel {
 	}
 
 	add(content) {
-		this._data.push({
+		this._data.unshift({
 			id: TodoModel.id++,
 			content: content,
 			date: new Date(),

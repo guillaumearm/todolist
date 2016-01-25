@@ -9,21 +9,21 @@ import ReactDOM from 'react-dom';
 import TodoModel from './models/TodoModel';
 
 // Components
-import Test from './components/Test'
+import TodoList from './components/TodoList'
 
 
 /*
 ** Simulate some todos.
 */
-document.cookie = JSON.stringify([]);
-var todo = new TodoModel();
-todo.add("Hello world.");
-todo.add("Hello world 2.");
-todo.add("Hello world 3.");
-todo.done(0);
-todo.done(1);
+//document.cookie = JSON.stringify([]);
+var todoModel = new TodoModel();
+//todoModel.add("Hello world.");
+//todoModel.add("Hello world 2.");
+//todoModel.add("Hello world 3.");
+//todoModel.done(2);
+//todoModel.done(1);
 
 ReactDOM.render(
-	<Test>{todo.data}</Test>,
+	<TodoList model={todoModel}></TodoList>,
 	document.querySelector("#todoAppContent")
 );
