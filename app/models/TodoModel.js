@@ -44,7 +44,7 @@ export default class TodoModel {
 			content: content,
 			date: new Date(),
 			done: false,
-			edited: false
+			editing: false
 		});
 		this._syncCookie();
 	}
@@ -73,10 +73,10 @@ export default class TodoModel {
 		this._setTodoState(id, false);
 	}
 
-	setEditedState(id, state) {
+	setEditingState(id, state) {
 		var i = this._data.map(e => e.id).indexOf(id);
 		if (i >= 0) {
-			this._data[i].edited = state;
+			this._data[i].editing = state;
 			this._syncCookie();
 		}
 	}

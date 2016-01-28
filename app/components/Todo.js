@@ -19,7 +19,7 @@ export default React.createClass({
 
 		var x = {}
 		
-		if (this.props.edited) {
+		if (this.props.editing) {
 			x = (
 				<SingleFormInput
 					autoFocus={true}

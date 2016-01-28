@@ -28,12 +28,12 @@ export default React.createClass({
 	},
 	editTodo: function(todo, newContent) {
 		this.state.model.update(todo.id, newContent)
-		this.state.model.setEditedState(todo.id, false);
+		this.state.model.setEditingState(todo.id, false);
 		this.forceUpdate()
 	},
 	doubleClickTodo: function (todo) {
 		return (e) => {
-			this.state.model.setEditedState(todo.id, true);
+			this.state.model.setEditingState(todo.id, true);
 			this.forceUpdate()
 		}
 	},
@@ -48,7 +48,7 @@ export default React.createClass({
 					onDeleteHandler={this.delTodo} 
 					onDoubleClickHandler={this.doubleClickTodo}
 					onEditHandler={this.editTodo}
-					edited={todo.edited}
+					editing={todo.editing}
 					key={todo.id}>
 				{todo}</Todo>
 			)
