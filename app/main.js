@@ -3,19 +3,25 @@ import './css/base.css'
 
 // React
 import React from 'react';
-import ReactDOM from 'react-dom';
+import {render} from 'react-dom';
 
 // Models
-import TodoModel from './models/TodoModel';
+//import TodoModel from './models/TodoModel';
 
 // Components
-import TodoList from './components/TodoList';
+//import TodoList from './components/TodoList';
 
-
-var todoModel = new TodoModel();
-
-ReactDOM.render(
-	<TodoList model={todoModel}></TodoList>,
+/*
+render(
+	<TodoList model={new TodoModel()}></TodoList>,
 	document.querySelector("#todoAppContent")
 );
 
+*/
+
+import {SingleFormInput} from './components/pure_SingleFormInput'
+
+render(
+	<div></div>,
+	document.querySelector("#todoAppContent")
+);
