@@ -1,14 +1,19 @@
 import React from 'react';
-import Todo from './Todo'
-import {SingleFormInput} from './pure_SingleFormInput'
+import Todo from './Todo';
+import SingleFormInput from './SingleFormInput';
 
 export default React.createClass({
-	addTodo: function(text = "") {
+	addTodo: function(e) {
+		let input = e.target[0]
+		let text = input.value
+
 		text = text.trim()
+		input.focus()
 		if (text) {
 			this.state.model.add(text)
 			this.forceUpdate()
 		}
+		input.value = ""
 	},
 	doneTodo: function(todo) {
 		return (e) => {
@@ -40,7 +45,7 @@ export default React.createClass({
 		return ({model: this.props.model})
 	},
 	render: function() {
-		var todos = this.state.model.data.map((todo) => {
+		let todos = this.state.model.data.map((todo) => {
 			return (
 				<Todo
 					onDoneHandler={this.doneTodo}
@@ -64,3 +69,4 @@ export default React.createClass({
 		)
 	}
 })
+
