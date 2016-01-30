@@ -2,6 +2,13 @@ import React from 'react';
 import ReactDOM from 'react-dom'
 import "./SingleFormInput.css"
 
+//
+// SingleFormInput is a pure stateless component :
+// - No states
+// - No side effects
+// - No mutations
+//
+
 const SingleFormInput = props => {
 	return (
 		<form	 className="SingleFormInput-wrapper"

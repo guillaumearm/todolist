@@ -2,20 +2,23 @@ import React from 'react';
 import Todo from './Todo';
 import SingleFormInput from './SingleFormInput';
 
-export default React.createClass({
-	addTodo: function(e) {
-		let input = e.target[0]
-		let text = input.value
+export default class TodoList extends React.Component
+{
+	state = {model: this.props.model};
 
-		text = text.trim()
+	addTodo = e => {
+		let input = e.target[0]
+		let text = input.value.trim()
+
 		input.focus()
 		if (text) {
 			this.state.model.add(text)
 			this.forceUpdate()
 		}
 		input.value = ""
-	},
-	doneTodo: function(todo) {
+	};
+
+	doneTodo = todo => {
 		return (e) => {
 			if (todo.done)
 				this.state.model.undo(todo.id)
@@ -23,57 +26,57 @@ export default React.createClass({
 				this.state.model.done(todo.id)
 			this.forceUpdate()
 		}
-	},
-	delTodo: function(todo) { 
+	};
+
+	delTodo = todo => {
 		return (e) => {
 			this.state.model.del(todo.id)
 			this.forceUpdate()
 		}
-	},
-	editTodo: function(todo, newContent) {
+	};
+
+	editTodo = (todo, newContent) => {
 		this.state.model.update(todo.id, newContent)
-		this.state.model.setEditingState(todo.id, false);
+		this.state.model.setEditingState(todo.id, false)
 		this.forceUpdate()
-	},
-	doubleClickTodo: function (todo) {
+	};
+
+	doubleClickTodo = todo => {
 		return (e) => {
-			this.state.model.setEditingState(todo.id, true);
+			this.state.model.setEditingState(todo.id, true)
 			this.forceUpdate()
 		}
-	},
+	};
 
-	getInitialState: function() {
-		return ({model: this.props.model})
-	},
-	setFocus: function(input) {
-		if (input) {
+	setFocus = input => {
+		if (input)
 			input.focus()
-		}
-	},
-	render: function() {
-		let todos = this.state.model.data.map((todo) => {
+	};
+
+	render() {
+		let todos = this.state.model.data.map(todo => {
 			return (
 				<Todo
 					onDoneHandler={this.doneTodo}
-					onDeleteHandler={this.delTodo} 
+					onDeleteHandler={this.delTodo}
 					onDoubleClickHandler={this.doubleClickTodo}
 					onEditHandler={this.editTodo}
 					editing={todo.editing}
-					key={todo.id}>
-				{todo}</Todo>
+					key={todo.id}
+				>{todo}</Todo>
 			)
 		})
 		return (
 			<div>
 				<SingleFormInput
 					onMountInput={this.setFocus}
-					placeholder="Type a thing todo..." 
-					valueButton="Add"
 					submitHandler={this.addTodo}
+					placeholder="Type a thing todo..."
+					valueButton="Add"
 				/>
 				{todos}
 			</div>
 		)
 	}
-})
+}
 
