@@ -22,7 +22,6 @@ export default class Todo extends React.Component {
 	setFocus = (input) => {
 		if (input)
 		{
-			console.log(input.value)
 			input.focus();
 			input.value = input.value
 		}
