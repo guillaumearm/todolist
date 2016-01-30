@@ -1,6 +1,14 @@
 import React from 'react';
 import SingleFormInput from './SingleFormInput';
 
+//
+// Todo is a pure stateless component :
+// - No states
+// - No side effects
+// - No mutations
+// - No problems
+//
+
 const Todo = props => {
 	let todo = props.children
 	let done = (todo.done ? "[x]" : "[ ]")

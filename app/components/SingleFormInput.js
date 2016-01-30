@@ -1,5 +1,4 @@
 import React from 'react';
-import ReactDOM from 'react-dom'
 import "./SingleFormInput.css"
 
 //
@@ -7,6 +6,7 @@ import "./SingleFormInput.css"
 // - No states
 // - No side effects
 // - No mutations
+// - No problems
 //
 
 const SingleFormInput = props => {

@@ -1,95 +1,42 @@
-import React, {Component} from 'react';
+import React from 'react';
 import Todo from './Todo';
 import SingleFormInput from './SingleFormInput';
 
-export default class TodoList extends Component
-{
-	state = {model: this.props.model};
+//
+// TodoList is a pure stateless component :
+// - No states
+// - No side effects
+// - No mutations
+// - No problems
+//
 
-	addTodo = e => {
-		let input = e.target[0]
-		let text = input.value.trim()
-
-		input.focus()
-		if (text) {
-			this.state.model.add(text)
-			this.forceUpdate()
-		}
-		input.value = ""
-	};
-
-	doneTodo = todo => {
-		return (e) => {
-			if (todo.done)
-				this.state.model.undo(todo.id)
-			else
-				this.state.model.done(todo.id)
-			this.forceUpdate()
-		}
-	};
-
-	delTodo = todo => {
-		return (e) => {
-			this.state.model.del(todo.id)
-			this.forceUpdate()
-		}
-	};
-
-	editTodo = todo => e => {
-		let input = e.target[0]
-
-		this.state.model.update(todo.id, input.value)
-		this.state.model.setEditingState(todo.id, false)
-		this.forceUpdate()
-	};
-
-	changeTodo = todo => e => {
-		this.state.model.update(todo.id, e.target.value)
-		this.forceUpdate()
-	};
-
-	doubleClickTodo = todo => {
-		return (e) => {
-			this.state.model.setEditingState(todo.id, true)
-			this.forceUpdate()
-		}
-	};
-
-	setFocus = input => {
-		if (input)
-		{
-			input.focus()
-			input.value = input.value
-		}
-	};
-
-	render() {
-		let todos = this.state.model.data.map(todo => {
-			return (
-				<Todo
-					onChangeHandler={this.changeTodo}
-					onDoneHandler={this.doneTodo}
-					onDeleteHandler={this.delTodo}
-					onDoubleClickHandler={this.doubleClickTodo}
-					onEditHandler={this.editTodo}
-
-					onMountInput={this.setFocus}
-					editing={todo.editing}
-					key={todo.id}
-				>{todo}</Todo>
-			)
-		})
+const TodoList = props => {
+	let todos = props.model.data.map(todo => {
 		return (
-			<div>
-				<SingleFormInput
-					onMountInput={this.setFocus}
-					submitHandler={this.addTodo}
-					placeholder="Type a thing todo..."
-					buttonValue="Add"
-				/>
-				{todos}
-			</div>
+			<Todo
+				onChangeHandler={props.changeTodo}
+				onDoneHandler={props.doneTodo}
+				onDeleteHandler={props.delTodo}
+				onDoubleClickHandler={props.doubleClickTodo}
+				onEditHandler={props.editTodo}
+				onMountInput={props.setFocus(todo)}
+				editing={todo.editing}
+				key={todo.id}
+			>{todo}</Todo>
 		)
-	}
-}
+	})
+	return (
+		<div>
+			<h2>{props.children}</h2>
+			<SingleFormInput
+				onMountInput={props.setFocus}
+				submitHandler={props.addTodo}
+				placeholder="Type a thing todo..."
+				buttonValue="Add"
+			/>
+			{todos}
+		</div>
+	)
+};
 
+export default TodoList;
