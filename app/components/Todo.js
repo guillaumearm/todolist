@@ -1,4 +1,5 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
 import SingleFormInput from './SingleFormInput';
 
 export default class Todo extends React.Component {
@@ -18,6 +19,15 @@ export default class Todo extends React.Component {
 		return ""
 	};
 
+	setFocus = (input) => {
+		if (input)
+		{
+			console.log(input.value)
+			input.focus();
+			input.value = input.value
+		}
+	};
+
 	render() { 
 		let todo = this.props.children
 		let done = (todo.done ? "[x]" : "[ ]")
@@ -31,6 +41,7 @@ export default class Todo extends React.Component {
 					noButton={true}
 					submitHandler={this.editTodo}
 					changeHandler={this.changeText}
+					onMountInput={this.setFocus}
 				/>
 			)
 		}

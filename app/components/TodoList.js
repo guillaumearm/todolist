@@ -41,8 +41,14 @@ export default React.createClass({
 			this.forceUpdate()
 		}
 	},
+
 	getInitialState: function() {
 		return ({model: this.props.model})
+	},
+	setFocus: function(input) {
+		if (input) {
+			input.focus()
+		}
 	},
 	render: function() {
 		let todos = this.state.model.data.map((todo) => {
@@ -60,6 +66,7 @@ export default React.createClass({
 		return (
 			<div>
 				<SingleFormInput
+					onMountInput={this.setFocus}
 					placeholder="Type a thing todo..." 
 					valueButton="Add"
 					submitHandler={this.addTodo}
