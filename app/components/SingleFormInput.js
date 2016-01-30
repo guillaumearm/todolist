@@ -24,7 +24,7 @@ const SingleFormInput = props => {
 					 value={props.value}
 					 ref={props.onMountInput}
 			/>
-			{props.noButton ? "" : (<button>{props.valueButton}</button>)}
+			{props.noButton ? "" : (<button>{props.buttonValue}</button>)}
 		</form>
 	)
 };

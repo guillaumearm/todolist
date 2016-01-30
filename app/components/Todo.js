@@ -1,60 +1,36 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import SingleFormInput from './SingleFormInput';
 
-export default class Todo extends React.Component {
-	state = {
-		content: this.props.children.content
-	};
+const Todo = props => {
+	let todo = props.children
+	let done = (todo.done ? "[x]" : "[ ]")
+	let entry = {};
 
-	changeText = (e) => {
-		this.setState({content: e.target.value})
-	};
-
-	editTodo = (e) => {
-		let input = e.target[0]
-
-		this.setState({content: input.value})
-		this.props.onEditHandler(this.props.children, input.value)
-		return ""
-	};
-
-	setFocus = (input) => {
-		if (input)
-		{
-			input.focus();
-			input.value = input.value
-		}
-	};
-
-	render() { 
-		let todo = this.props.children
-		let done = (todo.done ? "[x]" : "[ ]")
-
-		let entry = {}
-		
-		if (this.props.editing) {
-			entry = (
-				<SingleFormInput
-					value={this.state.content}
-					noButton={true}
-					submitHandler={this.editTodo}
-					changeHandler={this.changeText}
-					onMountInput={this.setFocus}
-				/>
-			)
-		}
-		else {
-			entry = (<code onDoubleClick={this.props.onDoubleClickHandler(todo)}>{todo.content}</code>)
-		}
-		
-		return (
-			<div>
-				{entry}
-				<button onClick={this.props.onDoneHandler(todo)}>{done}</button>
-				<button onClick={this.props.onDeleteHandler(todo)}>DELETE</button>
-			</div>
+	if (props.editing) {
+		entry = (
+			<SingleFormInput {...props}
+							submitHandler={props.onEditHandler(todo)}
+							changeHandler={props.onChangeHandler(todo)}
+							noButton={true}
+							value={todo.content}
+			/>
 		)
 	}
-}
+	else {
+		entry = (
+			<code onDoubleClick={props.onDoubleClickHandler(todo)}>
+				{todo.content}
+			</code>
+		)
+	}
 
+	return (
+		<div>
+			{entry}
+			<button onClick={props.onDoneHandler(todo)}>{done}</button>
+			<button onClick={props.onDeleteHandler(todo)}>DELETE</button>
+		</div>
+	)
+};
+
+export default Todo;

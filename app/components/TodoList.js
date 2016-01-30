@@ -1,8 +1,8 @@
-import React from 'react';
+import React, {Component} from 'react';
 import Todo from './Todo';
 import SingleFormInput from './SingleFormInput';
 
-export default class TodoList extends React.Component
+export default class TodoList extends Component
 {
 	state = {model: this.props.model};
 
@@ -35,9 +35,16 @@ export default class TodoList extends React.Component
 		}
 	};
 
-	editTodo = (todo, newContent) => {
-		this.state.model.update(todo.id, newContent)
+	editTodo = todo => e => {
+		let input = e.target[0]
+
+		this.state.model.update(todo.id, input.value)
 		this.state.model.setEditingState(todo.id, false)
+		this.forceUpdate()
+	};
+
+	changeTodo = todo => e => {
+		this.state.model.update(todo.id, e.target.value)
 		this.forceUpdate()
 	};
 
@@ -50,17 +57,23 @@ export default class TodoList extends React.Component
 
 	setFocus = input => {
 		if (input)
+		{
 			input.focus()
+			input.value = input.value
+		}
 	};
 
 	render() {
 		let todos = this.state.model.data.map(todo => {
 			return (
 				<Todo
+					onChangeHandler={this.changeTodo}
 					onDoneHandler={this.doneTodo}
 					onDeleteHandler={this.delTodo}
 					onDoubleClickHandler={this.doubleClickTodo}
 					onEditHandler={this.editTodo}
+
+					onMountInput={this.setFocus}
 					editing={todo.editing}
 					key={todo.id}
 				>{todo}</Todo>
@@ -72,7 +85,7 @@ export default class TodoList extends React.Component
 					onMountInput={this.setFocus}
 					submitHandler={this.addTodo}
 					placeholder="Type a thing todo..."
-					valueButton="Add"
+					buttonValue="Add"
 				/>
 				{todos}
 			</div>
