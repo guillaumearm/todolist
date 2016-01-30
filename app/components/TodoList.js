@@ -1,6 +1,6 @@
 import React from 'react';
-import SingleFormInput from './SingleFormInput'
 import Todo from './Todo'
+import {SingleFormInput} from './pure_SingleFormInput'
 
 export default React.createClass({
 	addTodo: function(text = "") {
@@ -9,7 +9,6 @@ export default React.createClass({
 			this.state.model.add(text)
 			this.forceUpdate()
 		}
-		return ""
 	},
 	doneTodo: function(todo) {
 		return (e) => {
@@ -55,7 +54,11 @@ export default React.createClass({
 		})
 		return (
 			<div>
-				<SingleFormInput autoFocus={true} placeholder="Type a thing todo..." onSubmitHandler={this.addTodo}/>
+				<SingleFormInput
+					placeholder="Type a thing todo..." 
+					valueButton="Add"
+					submitHandler={this.addTodo}
+				/>
 				{todos}
 			</div>
 		)
