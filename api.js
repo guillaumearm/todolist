@@ -1,7 +1,26 @@
+/************************
+** Data *****************
+************************/
 let data = [{id: 1, content: "Hello World"}, {id: 42, content: "Forty Two"}];
 
+/************************
+** Utilities ************
+************************/
 const findTodo = idTodo => data.findIndex(({id}) => idTodo == id);
 
+/************************
+** Persistance **********
+************************/
+const getFile = (fileName) => {
+	return ""
+};
+
+const saveFile = (fileName) => {
+};
+
+/************************
+** API ******************
+************************/
 const todoGet = (req, res) => {
 	let id = findTodo(req.params.id)
 
@@ -50,6 +69,9 @@ const todoPut = (req, res) => {
 	res.end()
 }
 
+/************************
+** Injector  ************
+************************/
 const injectAPI = app => {
 	app	.route('/todo/:id')
 		.get(todoGet)
