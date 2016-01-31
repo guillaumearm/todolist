@@ -6,19 +6,18 @@ import webpack from 'webpack';
 import webpackMiddleware from 'webpack-dev-middleware';
 import webpackHotMiddleware from 'webpack-hot-middleware';
 import config from './webpack.config.js';
+import bodyParser from 'body-parser'
 
-
-// Bad
-process.getUserName = function() {
-	var username =  require('child_process').execSync( "whoami", { encoding: 'utf8', timeout: 1000 } );
-	return String(username).trim();
-}
-
+import injectAPI from './api'
 
 const isDeveloping = process.env.NODE_ENV !== 'production';
-const port = isDeveloping ? (process.getUserName() == "root" ? 80 : 8080) : process.env.PORT;
+const port = isDeveloping ? 8080 : process.env.PORT;
 const app = express();
 
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({
+	extended: true
+}));
 
 if (isDeveloping) {
   const compiler = webpack(config);
@@ -37,17 +36,18 @@ if (isDeveloping) {
 
   app.use(middleware);
   app.use(webpackHotMiddleware(compiler));
-  app.get('*', function response(req, res) {
+  app.get('/', function response(req, res) {
     res.write(middleware.fileSystem.readFileSync(path.join(__dirname, 'dist/index.html')));
     res.end();
   });
 } else {
   app.use(express.static(__dirname + '/dist'));
-  app.get('*', function response(req, res) {
+  app.get('/', function response(req, res) {
     res.sendFile(path.join(__dirname, 'dist/index.html'));
   });
 }
 
+injectAPI(app);
 app.listen(port, '0.0.0.0', function onStart(err) {
   if (err) {
     console.log(err);
