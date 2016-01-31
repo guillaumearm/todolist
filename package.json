@@ -24,6 +24,7 @@
     "eslint": "eslint .",
     "jscs": "jscs ."
   },
+  "private": true,
   "dependencies": {
     "babel-cli": "^6.4.0",
     "body-parser": "^1.14.2",
