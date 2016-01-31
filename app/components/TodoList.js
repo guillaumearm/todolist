@@ -29,7 +29,7 @@ const TodoList = props => {
 		<div>
 			<h2>{props.children}</h2>
 			<SingleFormInput
-				onMountInput={props.setFocus}
+				onMountInput={props.setFocus({})}
 				submitHandler={props.addTodo}
 				placeholder="Type a thing todo..."
 				buttonValue="Add"

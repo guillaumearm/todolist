@@ -32,6 +32,7 @@ export const delTodo = app => todo => {
 export const editTodo = app => todo => e => {
 	let input = e.target[0]
 
+	app.state.lastId = null
 	app.state.model.update(todo.id, input.value)
 	app.state.model.setEditingState(todo.id, false)
 	app.forceUpdate()
@@ -52,16 +53,9 @@ export const doubleClickTodo = app => todo => {
 };
 
 export const setFocus = app => todo => input => {
-	let focusIt = () => { input.focus() ; input.value = input.value }
-
-	if (input && app.state.lastId == null && !todo )
-		{
-		focusIt()
-		console.log("YOLO")
-		}
-	else if (input && app.state.lastId == todo.id)
-		{
-		console.log("YOP OK")
-		focusIt()
-		}
+	if (input && app.state.lastId == todo.id)
+	{
+		input.focus()
+		input.value = input.value
+	}
 };
