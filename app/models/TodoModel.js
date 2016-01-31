@@ -6,12 +6,12 @@ export default class TodoModel {
 	}
 
 	_syncCookie() {
-		var jsonstr = JSON.stringify(this._data)
-		document.cookie = encodeURIComponent(jsonstr)
+		let str = JSON.stringify(this._data)
+		document.cookie = encodeURIComponent(str)
 	}
 
 	_setTodoState(id, state) {
-		var i = this._data.map(e => e.id).indexOf(id);
+		let i = this._data.map(e => e.id).indexOf(id);
 		if (i >= 0) {
 			this._data[i].done = state;
 			this._syncCookie();
@@ -19,7 +19,7 @@ export default class TodoModel {
 	}
 
 	constructor() {
-		var data = [];
+		let data = [];
 		try {
 			data = JSON.parse(decodeURIComponent(document.cookie));
 			this._setData(data);
@@ -50,7 +50,7 @@ export default class TodoModel {
 	}
 
 	del(id) {
-		var i = this._data.map(e => e.id).indexOf(id);
+		let i = this._data.map(e => e.id).indexOf(id);
 		if (i >= 0) {
 			this._data.splice(i, 1)
 			this._syncCookie();
@@ -58,7 +58,7 @@ export default class TodoModel {
 	}
 
 	update(id, content) {
-		var i = this._data.map(e => e.id).indexOf(id);
+		let i = this._data.map(e => e.id).indexOf(id);
 		if (i >= 0) {
 			this._data[i].content = content ; this._data[i].date = new Date()
 			this._syncCookie();
@@ -74,7 +74,7 @@ export default class TodoModel {
 	}
 
 	setEditingState(id, state) {
-		var i = this._data.map(e => e.id).indexOf(id);
+		let i = this._data.map(e => e.id).indexOf(id);
 		if (i >= 0) {
 			this._data[i].editing = state;
 			this._syncCookie();
