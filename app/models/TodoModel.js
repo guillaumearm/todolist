@@ -14,14 +14,14 @@ export default class TodoModel {
 		let i = this._data.map(e => e.id).indexOf(id);
 		if (i >= 0) {
 			this._data[i].done = state;
-			this._syncCookie();
+			this._syncCookie(); // PUT
 		}
 	}
 
 	constructor() {
 		let data = [];
 		try {
-			data = JSON.parse(decodeURIComponent(document.cookie));
+			data = JSON.parse(decodeURIComponent(document.cookie)); // GET ALL
 			this._setData(data);
 		} catch(e) {
 			data = []
@@ -30,14 +30,11 @@ export default class TodoModel {
 			this._syncCookie()
 		}
 	}
+
 	get data() {
 		return this._data;
 	}
-	set data(jsonData) {
-		this._setData(jsonData);
-		this._syncCookie();
-	}
-
+	 
 	add(content) {
 		this._data.unshift({
 			id: TodoModel.id++,
@@ -46,14 +43,14 @@ export default class TodoModel {
 			done: false,
 			editing: false
 		});
-		this._syncCookie();
+		this._syncCookie(); // POST
 	}
 
 	del(id) {
 		let i = this._data.map(e => e.id).indexOf(id);
 		if (i >= 0) {
 			this._data.splice(i, 1)
-			this._syncCookie();
+			this._syncCookie(); // DELETE
 		}
 	}
 
@@ -61,23 +58,23 @@ export default class TodoModel {
 		let i = this._data.map(e => e.id).indexOf(id);
 		if (i >= 0) {
 			this._data[i].content = content ; this._data[i].date = new Date()
-			this._syncCookie();
+			this._syncCookie(); // PUT
 		}
 	}
 
 	done(id) {
-		this._setTodoState(id, true);
+		this._setTodoState(id, true); 
 	}
 
 	undo(id) {
-		this._setTodoState(id, false);
+		this._setTodoState(id, false); 
 	}
 
 	setEditingState(id, state) {
 		let i = this._data.map(e => e.id).indexOf(id);
 		if (i >= 0) {
 			this._data[i].editing = state;
-			this._syncCookie();
+			this._syncCookie(); // PUT
 		}
 	}
 }
