@@ -1,3 +1,5 @@
+import jsonfile from "jsonfile"
+
 /************************
 ** Data *****************
 ************************/
@@ -11,12 +13,25 @@ const findTodo = idTodo => data.findIndex(({id}) => idTodo == id);
 /************************
 ** Persistance **********
 ************************/
-const getFile = (fileName) => {
-	return ""
+const syncModel = () => {
+	jsonfile.writeFile("./todolist.json", data, (err) => {
+		if (err)
+			console.log("Error writing todolist.json file.");
+	});
 };
 
-const saveFile = (fileName) => {
-};
+jsonfile.readFile("./todolist.json", "utf8", (err, d) => {
+		if (err)
+		{
+			console.log("todolist.json not present, create an empty model.");
+			data = [];
+			syncModel();
+		}
+		else {
+			data = d;
+			console.log("Data Loaded.");
+		}
+});
 
 /************************
 ** API ******************
@@ -38,6 +53,7 @@ const todoPost = (req, res) => {
 		req.body.id = req.params.id;
 		data.push(req.body);
 		res.status(200).write("post ok");
+		syncModel();
 	}
 	else
 		res.status(500).write("todo #" + req.params.id + " already exist.")
@@ -50,6 +66,7 @@ const todoDelete = (req, res) => {
 	if (id >= 0) {
 		data.splice(id, 1);
 		res.status(200).write("delete ok");
+		syncModel();
 	}
 	else
 		res.status(500).write("todo #" + req.params.id + " doesnt't exist.")
@@ -63,6 +80,7 @@ const todoPut = (req, res) => {
 		data[id] = req.body
 		data[id].id = req.params.id
 		res.status(200).write("put ok")
+		syncModel();
 	}
 	else
 		res.status(500).write("todo #" + req.params.id + " doesnt't exist.")
@@ -73,13 +91,13 @@ const todoPut = (req, res) => {
 ** Injector  ************
 ************************/
 const injectAPI = app => {
-	app	.route('/todo/:id')
+	app	.route('/api/todo/:id')
 		.get(todoGet)
 		.post(todoPost)
 		.delete(todoDelete)
 		.put(todoPut)
 
-	app.get('/todos', (req, res) => {
+		app.get('/api/todos/', (req, res) => {
 		res.status(200).json(data)
 		res.end()	
 	});
