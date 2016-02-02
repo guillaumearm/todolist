@@ -10,6 +10,9 @@ import TodoList from './components/TodoList';
 // Actions
 import * as actions from './actions'
 
+// Model
+import TodoModel from './models/TodoModel'
+
 export default class App extends React.Component
 {
 	state = {model: this.props.model, lastId: null};
@@ -30,3 +33,8 @@ export default class App extends React.Component
 		)
 	};
 }
+
+App.propTypes = {
+	model: React.PropTypes.instanceOf(TodoModel).isRequired
+};
+
