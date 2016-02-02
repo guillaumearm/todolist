@@ -41,4 +41,19 @@ const Todo = props => {
 	)
 };
 
+Todo.propTypes = {
+	onEditHandler:	 		React.PropTypes.func.isRequired,
+	onChangeHandler: 		React.PropTypes.func.isRequired,
+	onDoubleClickHandler:	React.PropTypes.func.isRequired,
+	onDoneHandler: 			React.PropTypes.func.isRequired,
+	onDeleteHandler:		React.PropTypes.func.isRequired,
+	children: 				React.PropTypes.shape({
+								id: 		React.PropTypes.number.isRequired,
+								content:	React.PropTypes.string.isRequired,
+								date:		React.PropTypes.string.isRequired,
+								done:		React.PropTypes.bool.isRequired,
+								editing:	React.PropTypes.bool.isRequired
+							})
+};
+
 export default Todo;
