@@ -42,6 +42,7 @@ help: print_header
 	@echo "\t build: \t build docker image."
 	@echo "\t run: \t\t run container. (example: docker run DAEMON_MODE=0)"
 	@echo "\t run_shell: \t run container with zsh"
+	@echo "\t attach: \t attach a container"
 	@echo "\t stop: \t\t stop current process"
 	@echo "\t stop_all: \t stop all CONTAINER_BASE processes"
 	@echo "\t status: \t show status"
@@ -54,9 +55,9 @@ build: print_header clean
 	@echo "--- Building $(FULL_IMAGE_NAME) ---"
 	@docker build -t $(FULL_IMAGE_NAME) .
 
-run: print_header
+run: print_header stop
 ifeq ($(DAEMON_MODE),1)
-	@docker run -d --name "$(FULL_CONTAINER_NAME)" $(DOCKERFLAGS) $(FULL_IMAGE_NAME)
+	@docker run -itd --name "$(FULL_CONTAINER_NAME)" $(DOCKERFLAGS) $(FULL_IMAGE_NAME)
 	@echo "--- Running $(FULL_CONTAINER_NAME) (in Daemon Mode) ---"
 else
 	@echo "--- Running $(FULL_CONTAINER_NAME) ---"
@@ -66,6 +67,10 @@ endif
 run_shell: print_header 
 	@echo "--- Running zsh for $(FULL_CONTAINER_NAME) ---"
 	@docker run -it --name "$(FULL_CONTAINER_NAME)" $(DOCKERFLAGS) $(FULL_IMAGE_NAME) /bin/zsh || true
+
+attach: print_header
+	@echo "--- Attaching $(FULL_CONTAINER_NAME) ---"
+	@docker attach $(FULL_CONTAINER_NAME)
 
 stop: print_header
 	@echo "--- Stopping $(FULL_CONTAINER_NAME) ---"
@@ -92,7 +97,7 @@ clean: print_header
 
 fclean: print_header clean stop_all
 
-re: print_header stop run
+re: print_header fclean run
 
 print_header:
 	@echo -----------------------------------
