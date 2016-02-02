@@ -11,7 +11,7 @@ import bodyParser from 'body-parser'
 import injectAPI from './api'
 
 const isDeveloping = process.env.NODE_ENV !== 'production';
-const port = isDeveloping ? 8080 : process.env.PORT;
+const port = process.env.PORT ? process.env.PORT : 8080;
 const app = express();
 
 app.use(bodyParser.json());
