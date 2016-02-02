@@ -50,7 +50,6 @@ Todo.propTypes = {
 	children: 				React.PropTypes.shape({
 								id: 		React.PropTypes.number.isRequired,
 								content:	React.PropTypes.string.isRequired,
-								date:		React.PropTypes.string.isRequired,
 								done:		React.PropTypes.bool.isRequired,
 								editing:	React.PropTypes.bool.isRequired
 							})
