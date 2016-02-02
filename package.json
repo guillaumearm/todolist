@@ -1,7 +1,7 @@
 {
   "name": "todolist",
-  "version": "0.1.0",
-  "description": "A little todolist project for play with news web stuffs",
+  "version": "0.1.9",
+  "description": "A little todolist project for play with new web stuffs",
   "main": "server.js",
   "repository": {
     "type": "git",
@@ -20,8 +20,9 @@
   "homepage": "https://github.com/guillaumearm/todolist",
   "scripts": {
     "start": "./node_modules/.bin/babel-node server",
-    "build": "rimraf dist && set NODE_ENV=production && webpack --config ./webpack.production.config.js --progress --profile --colors",
-	"production": "npm run-script build && npm start --production"
+	"clean": "rimraf dist",
+    "build": "npm run clean && webpack --config ./webpack.production.config.js --progress --profile --colors",
+	"production": "npm start --production"
   },
   "private": true,
   "dependencies": {
