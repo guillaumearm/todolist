@@ -29,5 +29,17 @@ const SingleFormInput = props => {
 	)
 };
 
+SingleFormInput.propTypes = {
+	placeholder:	React.PropTypes.string,
+	value:			React.PropTypes.string,
+	onChange:		React.PropTypes.func,
+	ref:			React.PropTypes.oneOfType([
+						React.PropTypes.string,
+						React.PropTypes.func
+					]),
+
+	submitHandler:	React.PropTypes.func.isRequired
+};
+
 export default SingleFormInput;
 
