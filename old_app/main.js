@@ -3,7 +3,7 @@ import './css/base.css'
 
 // React
 import React from 'react';
-import {render} from 'react-dom';
+import { render } from 'react-dom';
 
 // Models
 import TodoModel from './models/TodoModel';
