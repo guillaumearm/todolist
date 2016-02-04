@@ -23,7 +23,7 @@ let test = [
 ]
 
 console.log(rootReducer(test, {
-	type:"ADD_TODO", content:"manually Added todo"
+	type:"DELETE_TODO", todo: {id: 42}
 }))
 
 // App

@@ -11,9 +11,14 @@ let reducers = {}
 
 reducers.ADD_TODO = (state, action) => {
 	let id		= getNextId(state)
-	let content 	= action.content 
+	let content 	= action.text
 	return [init ({id, content}), ...state]
 }
+
+reducers.DELETE_TODO = (state, action) => {
+	return state.filter(e => e !== action.todo)
+}
+
 // [...]
 
 export default reducers

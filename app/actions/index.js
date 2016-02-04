@@ -1,26 +1,28 @@
 import * as types from '../constants/ActionTypes'
 
 // Actions generators
-export const addTodo = content => {
-	return { type: types.ADD_TODO, content }
+export const addTodo = text => {
+	return { type: types.ADD_TODO, text }
 }
 
-export const delTodo = id => {
-	return { type: types.DELETE_TODO, id }
+export const delTodo = todo => {
+	return { type: types.DELETE_TODO, todo }
 }
 
-export const editTodo = (id, content) => {
-	return { type: types.EDIT_TODO, id, content }
+export const editTodo = (todo, newTodo) => {
+	return { type: types.EDIT_TODO, todo, newTodo }
 }
 
-export const doTodo = (id, isDone) => {
-	return !isDone ? {type: types.DO_TODO, id} : {type: types.UNDO_TODO, id}
+export const doTodo = (todo) => {
+	return !todo.isDone ? 
+  		{type: types.DO_TODO, todo} :
+		{type: types.UNDO_TODO, todo}
 }
 
-export const setEditingTodo = id => {
-	return { type: types.EDITING_STATE, id, editing: true }
+export const setEditingTodo = todo => {
+	return { type: types.EDITING_STATE, todo }
 }
 
 export const setEditedTodo = id => {
-	return { type: types.EDITING_STATE, id, editing: false }
+	return { type: types.EDITED_STATE, todo}
 }
