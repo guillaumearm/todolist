@@ -1,20 +1,15 @@
-import { combineReducers } from 'redux'
-import { ADD_TODO, DELETE_TODO, EDIT_TODO, DO_TODO, UNDO_TODO, EDITING_STATE_TODO } from '../constants/ActionTypes'
+// Libs
+import { update } from 'Fjs'
+import { reduceByActions } from '../lib/redux-utils'
 
-const initialState = [{
-	id: 1,
-	content: "Ok, first todo with redux.",
-	done: false,
-	editing: false
-}]
+// Skeleton and init function
+import { initialState, initWithSkel as init } from '../constants/TodoSkel'
 
-const todos = (state = initialState, action) => {
-	switch (action.type) {
-		case ADD_TODO:
+// Reducers based on actions
+import ActionReducers from './Todos'
 
-		default:
-			return state
-	}
-}
+// Main todo reducer
+const todos = (state = [initialState], action) =>
+	reduceByActions (ActionReducers) (state.map(init), action)
 
 export default todos

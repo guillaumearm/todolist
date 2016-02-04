@@ -16,11 +16,15 @@ let test = [
 	{id: 2, content: "TEST"},
 	{id: 3, content: "YOLO"},
 	{id: 4, content: "PLOP"},
-	{id: 42, content: "OK"},
+	{id: 42, content: "FT", additionalContent: "FT IS FORTY-TWO",
+							done: true, editing: true},
 	{id: 5, content: "MMMmmm"},
 	{id: 6, content: "Yep."}
 ]
 
+console.log(rootReducer(test, {
+	type:"ADD_TODO", content:"manually Added todo"
+}))
 
 // App
 //import App from './containers/App'
