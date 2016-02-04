@@ -23,7 +23,8 @@
     "start": "./node_modules/.bin/babel-node server",
 	"clean": "rimraf dist",
     "build": "npm run clean && webpack --config ./webpack.production.config.js --progress --profile --colors",
-	"production": "npm start --production"
+	"production": "npm start --production",
+	"update": "npm install Fjs"
   },
   "private": true,
   "dependencies": {
