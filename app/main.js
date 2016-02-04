@@ -6,15 +6,35 @@ import React from 'react'
 import { render } from 'react-dom'
 
 // Redux
-import { createStore, combineReducers } from 'redux'
+import { createStore } from 'redux'
 import { Provider } from 'react-redux'
 
-import * as YOLO from './actions'
+import rootReducer from './reducers'
 
-console.log(YOLO)
+let test = [
+	{id: 1, content: "Hello World"},
+	{id: 2, content: "TEST"},
+	{id: 3, content: "YOLO"},
+	{id: 4, content: "PLOP"},
+	{id: 42, content: "OK"},
+	{id: 5, content: "MMMmmm"},
+	{id: 6, content: "Yep."}
+]
+
 
 // App
 //import App from './containers/App'
+
+/*
+render (
+	<Provider store={createStore(rootReducer)}>
+		<App />
+	</Provider>
+	, document.getElementById('todoAppContent')
+)
+*/
+
+
 
 // Store
 //import configureStore from './store/configureStore'
@@ -47,9 +67,4 @@ store.dispatch({type: "yolo2"})
 
 console.log(store.getState())
 */
-
-render(
-	<h4>render</h4>
-	, document.getElementById('todoAppContent')
-)
 
