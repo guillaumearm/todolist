@@ -9,6 +9,10 @@ import { render } from 'react-dom'
 import { createStore, combineReducers } from 'redux'
 import { Provider } from 'react-redux'
 
+import * as YOLO from './actions'
+
+console.log(YOLO)
+
 // App
 //import App from './containers/App'
 
@@ -17,6 +21,7 @@ import { Provider } from 'react-redux'
 
 //const store = configureStore()
 
+/*
 const test1 = (state = {data1:"default1"}, action) => 
 	action.type == "yolo1"
 	?
@@ -41,11 +46,10 @@ const store = createStore(rootReducer)
 store.dispatch({type: "yolo2"})
 
 console.log(store.getState())
+*/
 
 render(
-	<Provider store={store}>
-		<h1>Hello World</h1>
-	</Provider>
+	<h4>render</h4>
 	, document.getElementById('todoAppContent')
 )
 
