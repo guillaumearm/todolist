@@ -1,5 +1,4 @@
 // Libs
-import { update } 			from 'Fjs'
 import { reduceByActions }	from '../lib/redux-utils'
 
 // Skeleton and init function

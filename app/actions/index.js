@@ -17,10 +17,10 @@ export const doTodo = (id, isDone) => {
 	return !isDone ? {type: types.DO_TODO, id} : {type: types.UNDO_TODO, id}
 }
 
-export const setEditingTodo = (id) => {
+export const setEditingTodo = id => {
 	return { type: types.EDITING_STATE, id, editing: true }
 }
 
-export const setEditedTodo = (id) => {
+export const setEditedTodo = id => {
 	return { type: types.EDITING_STATE, id, editing: false }
 }
