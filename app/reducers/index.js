@@ -1,6 +1,6 @@
 // Libs
-import { update } from 'Fjs'
-import { reduceByActions } from '../lib/redux-utils'
+import { update } 			from 'Fjs'
+import { reduceByActions }	from '../lib/redux-utils'
 
 // Skeleton and init function
 import { initialState, initWithSkel as init } from '../constants/TodoSkel'
