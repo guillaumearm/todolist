@@ -1,4 +1,4 @@
-import { update } from 'Fjs'
+import { __, apply, inject, flip } from 'Fjs'
 
 export const initialState = {
 	id: 		0,
@@ -7,4 +7,4 @@ export const initialState = {
 	editing: 	false
 }
 
-export const initWithSkel = update (initialState)
+export const initWithSkel = flip (inject) (initialState)

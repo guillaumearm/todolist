@@ -1,6 +1,6 @@
 import { initWithSkel as init }		from '../constants/TodoSkel'
 import { getNextId } 			from '../lib/utils'
-import { update }			from 'Fjs'
+import { inject }			from 'Fjs'
 
 import { 
 	ADD_TODO, DELETE_TODO, EDIT_TODO,
@@ -23,7 +23,7 @@ reducers.DELETE_TODO = (state, action) => {
 reducers.EDIT_TODO = (state, action) => {
 	return state.map(e => 
 			e.id === action.todo.id ?
-			update (e) (update (action.newTodo) ({id: e.id}))
+			inject (inject ({id: e.id}) (action.newTodo)) (e)
 			: e
 	)
 }
