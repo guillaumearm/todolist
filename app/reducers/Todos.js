@@ -16,7 +16,7 @@ reducers.ADD_TODO = (state, action) => {
 }
 
 reducers.DELETE_TODO = (state, action) => {
-	return state.filter(e => e !== action.todo)
+	return state.filter(e => e.id !== action.todo.id)
 }
 
 // [...]

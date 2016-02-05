@@ -13,17 +13,13 @@ import rootReducer from './reducers'
 
 let test = [
 	{id: 1, content: "Hello World"},
-	{id: 2, content: "TEST"},
-	{id: 3, content: "YOLO"},
-	{id: 4, content: "PLOP"},
+	{id: 2, content: "YOLO"},
 	{id: 42, content: "FT", additionalContent: "FT IS FORTY-TWO",
-							done: true, editing: true},
-	{id: 5, content: "MMMmmm"},
-	{id: 6, content: "Yep."}
+							done: true, editing: true}
 ]
 
 console.log(rootReducer(test, {
-	type:"DELETE_TODO", todo: {id: 42}
+	type:"DELETE_TODO", todo: {id: 2}
 }))
 
 // App
