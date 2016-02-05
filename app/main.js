@@ -11,16 +11,15 @@ import { Provider } from 'react-redux'
 
 import rootReducer from './reducers'
 
+import { doTodo } from './actions'
+
 let test = [
 	{id: 1, content: "Hello World"},
 	{id: 2, content: "YOLO"},
-	{id: 42, content: "FT", additionalContent: "FT IS FORTY-TWO",
-							done: true, editing: true}
+	{id: 42, content: "FT", additionalContent: "FT IS FORTY-TWO"}
 ]
 
-console.log(rootReducer(test, {
-	type:"DELETE_TODO", todo: {id: 2}
-}))
+console.log(rootReducer(test, doTodo({id: 42})))
 
 // App
 //import App from './containers/App'

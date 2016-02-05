@@ -1,4 +1,5 @@
 import * as types from '../constants/ActionTypes'
+import { update } from 'Fjs'
 
 // Actions generators
 export const addTodo = text => {
@@ -15,14 +16,14 @@ export const editTodo = (todo, newTodo) => {
 
 export const doTodo = (todo) => {
 	return !todo.isDone ? 
-  		{type: types.DO_TODO, todo} :
-		{type: types.UNDO_TODO, todo}
+  		{type: types.DO_TODO, todo, newTodo: update (todo) ({done: true})} :
+		{type: types.UNDO_TODO, todo, newTodo: update (todo) ({done: false})}
 }
 
 export const setEditingTodo = todo => {
-	return { type: types.EDITING_STATE, todo }
+	return { type: types.EDITING_STATE, todo, newTodo: update (todo) ({editing: true}) }
 }
 
-export const setEditedTodo = id => {
-	return { type: types.EDITED_STATE, todo}
+export const setEditedTodo = todo => {
+	return { type: types.EDITED_STATE, todo, newTodo: update (todo) ({editing:false})}
 }
