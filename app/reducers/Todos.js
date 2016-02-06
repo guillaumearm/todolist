@@ -21,7 +21,6 @@ reducers.DELETE_TODO = (state, action) => {
 }
 
 reducers.EDIT_TODO = (state, action) => {
- 	console.log("EDIT: " + action.todo.id)
 	return state.map(e => 
 			e.id === action.todo.id ?
 				inject (action.newTodo) (e)

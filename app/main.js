@@ -19,17 +19,22 @@ let test = [
 	{id: 42, content: "FT", additionalContent: "FT IS FORTY-TWO"}
 ]
 
-let doubleEdit = () => {
+let SubActionsTest = () => {
 	return {
 		type: "TODOS",
 		subActions: [
-			setEditingTodo({id: 1}),
-			setEditingTodo({id: 2})
+			addTodo("FIRST TODO"),
+		 	{type: "TODOS", subActions: [addTodo("IT WORS"), addTodo("IT'S OK")]},
+			addTodo("LAST TODO")
 		]
 	}
 }
 
-console.log(rootReducer(test, doubleEdit()))
+let x = test
+x = rootReducer(x, SubActionsTest())
+x = rootReducer(x, editTodo({id: 42}, {content: "OK OK OK"}))
+
+console.log(x)
 
 // App
 //import App from './containers/App'

@@ -1,5 +1,5 @@
 // Libs
-import { reduceByActions }	from '../lib/redux-subactions'
+import { reduceByActions }	from 'redux-subactions'
 
 // Skeleton and init function
 import { initialState, initWithSkel as init } from '../constants/TodoSkel'

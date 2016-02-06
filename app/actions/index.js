@@ -1,5 +1,5 @@
 import * as types from '../constants/ActionTypes'
-import { createSubAction } from '../lib/redux-subactions'
+import { createSubAction } from 'redux-subactions'
 
 let create = createSubAction("TODOS")
 
