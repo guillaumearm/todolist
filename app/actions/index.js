@@ -1,29 +1,34 @@
 import * as types from '../constants/ActionTypes'
-import { inject } from 'Fjs'
+import { createSubAction } from '../lib/redux-subactions'
+
+let create = createSubAction("TODOS")
 
 // Actions generators
 export const addTodo = text => {
-	return { type: types.ADD_TODO, text }
+	return create ({ type: types.ADD_TODO, text })
 }
 
 export const delTodo = todo => {
-	return { type: types.DELETE_TODO, todo }
+	return create ({ type: types.DELETE_TODO, todo })
 }
 
 export const editTodo = (todo, newTodo) => {
-	return { type: types.EDIT_TODO, todo, newTodo }
+	newTodo.id = todo.id
+	return create ({ type: types.EDIT_TODO, todo, newTodo })
 }
 
-export const doTodo = (todo) => {
-	return !todo.isDone ? 
-  		{type: types.DO_TODO, todo, newTodo: inject (todo) ({done: true})} :
-		{type: types.UNDO_TODO, todo, newTodo: inject (todo) ({done: false})}
+export const doTodo = todo => {
+	return create (
+  		!todo.isDone ? 
+  			{ type: types.DO_TODO, todo, newTodo: { ...todo, done: true } }
+			: { type: types.UNDO_TODO, todo, newTodo: { ...todo, done: false } }
+	)
 }
 
 export const setEditingTodo = todo => {
-	return { type: types.EDITING_STATE, todo, newTodo: inject (todo) ({editing: true}) }
+	return create ({ type: types.EDITING_STATE, todo, newTodo: { ...todo, editing: true } })
 }
 
 export const setEditedTodo = todo => {
-	return { type: types.EDITED_STATE, todo, newTodo: inject (todo) ({editing:false})}
+	return create ({ type: types.EDITED_STATE, todo, newTodo: { ...todo, editing: false } })
 }

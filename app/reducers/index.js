@@ -1,14 +1,18 @@
 // Libs
-import { reduceByActions }	from '../lib/redux-utils'
+import { reduceByActions }	from '../lib/redux-subactions'
 
 // Skeleton and init function
 import { initialState, initWithSkel as init } from '../constants/TodoSkel'
 
-// Reducers based on actions
-import ActionReducers from './Todos'
+// Todos reducers
+import TODOS from './Todos'
 
-// Main todos reducer
-const todos = (state = [initialState], action) =>
-	reduceByActions (ActionReducers) (state.map(init), action)
+const reducers = { TODOS }
 
-export default todos
+// Main reducer
+const rootReducer = (state = [initialState], action) =>
+	action && action.type ?
+		reduceByActions (reducers) (state.map(init), action)
+	:	state
+
+export default rootReducer

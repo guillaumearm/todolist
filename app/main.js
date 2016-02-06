@@ -11,7 +11,7 @@ import { Provider } from 'react-redux'
 
 import rootReducer from './reducers'
 
-import { doTodo } from './actions'
+import { addTodo, editTodo, doTodo, setEditingTodo, setEditedTodo } from './actions'
 
 let test = [
 	{id: 1, content: "Hello World"},
@@ -19,7 +19,17 @@ let test = [
 	{id: 42, content: "FT", additionalContent: "FT IS FORTY-TWO"}
 ]
 
-console.log(rootReducer(test, doTodo({id: 42})))
+let doubleEdit = () => {
+	return {
+		type: "TODOS",
+		subActions: [
+			setEditingTodo({id: 1}),
+			setEditingTodo({id: 2})
+		]
+	}
+}
+
+console.log(rootReducer(test, doubleEdit()))
 
 // App
 //import App from './containers/App'

@@ -21,14 +21,13 @@
   "homepage": "https://github.com/guillaumearm/todolist",
   "scripts": {
     "start": "./node_modules/.bin/babel-node server",
-	"clean": "rimraf dist",
+    "clean": "rimraf dist",
     "build": "npm run clean && webpack --config ./webpack.production.config.js --progress --profile --colors",
-	"production": "npm start --production",
-	"update": "npm install Fjs"
+    "production": "npm start --production",
+    "update": "npm install Fjs"
   },
   "private": true,
   "dependencies": {
-	"Fjs": "guillaumearm/Fjs",
     "body-parser": "^1.14.2",
     "immutable": "^3.7.6",
     "isomorphic-fetch": "^2.2.1",
@@ -39,6 +38,7 @@
     "redux": "^3.1.6"
   },
   "devDependencies": {
+    "Fjs": "github:guillaumearm/Fjs",
     "autoprefixer": "^6.0.3",
     "babel-cli": "^6.4.5",
     "babel-core": "^6.4.5",
@@ -60,6 +60,7 @@
     "react-addons-test-utils": "^0.14.7",
     "react-transform-hmr": "^1.0.0",
     "redux-devtools": "^3.0.2",
+    "redux-subactions": "github:guillaumearm/redux-subactions",
     "rimraf": "^2.4.3",
     "sinon": "^1.17.3",
     "sinon-chai": "^2.8.0",
