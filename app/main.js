@@ -13,6 +13,8 @@ import rootReducer from './reducers'
 
 import { addTodo, editTodo, doTodo, setEditingTodo, setEditedTodo } from './actions'
 
+import SingleFormInput from './components/SingleFormInput'
+
 let test = [
 	{id: 1, content: "Hello World"},
 	{id: 2, content: "YOLO"},
