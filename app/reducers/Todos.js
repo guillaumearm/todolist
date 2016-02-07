@@ -36,6 +36,7 @@ reducers.EDITED_STATE = reducers.EDIT_TODO
 reducers.SET_FOCUS = (state, action) => {
 	const setFocus = inject ({focus: true})
 	const unsetFocus = inject ({focus: false})
+
 	return state.map(e =>
 		action.todo && e.id == action.todo.id ?
 		  setFocus(e)

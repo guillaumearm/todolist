@@ -3,7 +3,15 @@ import "./SingleFormInput.css"
 
 
 const SingleFormInput = props => {
-	const focus = e => { if (props.focus) e.focus() ; e.value = e.value }
+ 	const _focus = e => {
+		e.focus()
+		e.value = e.value
+	}
+
+	const focus = e => {
+		if (props.focus && e)
+			_focus(e)
+	}
 
 	return (
 	 	<form className="SingleFormInput-wrapper"
@@ -25,7 +33,9 @@ SingleFormInput.propTypes = {
 	onChange:	PropTypes.func.isRequired,
 	focus:		PropTypes.bool,
 	value:		PropTypes.string,
-	placeholder:	PropTypes.string
+	placeholder:	PropTypes.string,
+	buttonValue:	PropTypes.string,
+	noButton:	PropTypes.bool
 }
 
 export default SingleFormInput

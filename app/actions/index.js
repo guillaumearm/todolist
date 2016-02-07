@@ -22,6 +22,13 @@ export const editTodo = (todo, newTodo) => {
 	return create ({ type: types.EDIT_TODO, todo, newTodo })
 }
 
+
+export const editTodoContent = (todo, text) => {
+	return create ([
+		{ type: types.EDIT_TODO, todo, newTodo: { ...todo, content: text } }
+	])
+}
+
 export const doTodo = todo => {
 	const do_undo =  (
   		!todo.isDone ? 
