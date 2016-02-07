@@ -3,7 +3,7 @@ import "./SingleFormInput.css"
 
 
 const SingleFormInput = props => {
-	const focus = e => { if (props.setFocus) e.focus() ; e.value = e.value }
+	const focus = e => { if (props.focus) e.focus() ; e.value = e.value }
 
 	return (
 	 	<form className="SingleFormInput-wrapper"
@@ -23,7 +23,7 @@ const SingleFormInput = props => {
 SingleFormInput.propTypes = {
 	onSubmit:	PropTypes.func.isRequired,
 	onChange:	PropTypes.func.isRequired,
-	setFocus:	PropTypes.bool,
+	focus:		PropTypes.bool,
 	value:		PropTypes.string,
 	placeholder:	PropTypes.string
 }
