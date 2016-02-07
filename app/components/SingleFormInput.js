@@ -3,20 +3,24 @@ import "./SingleFormInput.css"
 
 
 const SingleFormInput = props => {
- 	const _focus = e => {
-		e.focus()
-		e.value = e.value
-	}
-
 	const focus = e => {
 		if (props.focus && e)
-			_focus(e)
+		{
+		 	e.focus()
+			e.value = e.value
+		}
 	}
 
 	return (
 	 	<form className="SingleFormInput-wrapper"
 			autoComplete="off"
-			onSubmit={ e => { e.preventDefault() ; props.onSubmit(e) } }
+			onSubmit={ e => { 
+					e.preventDefault()
+					e.target[0].focus()
+					if (props.onSubmit)
+						props.onSubmit(e)
+				}
+			}
 		>
 		 	<input type="text" ref={ focus }
 				placeholder={ props.placeholder }
@@ -29,8 +33,8 @@ const SingleFormInput = props => {
 }
 
 SingleFormInput.propTypes = {
-	onSubmit:	PropTypes.func.isRequired,
-	onChange:	PropTypes.func.isRequired,
+	onSubmit:	PropTypes.func,
+	onChange:	PropTypes.func,
 	focus:		PropTypes.bool,
 	value:		PropTypes.string,
 	placeholder:	PropTypes.string,

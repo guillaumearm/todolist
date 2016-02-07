@@ -1,4 +1,4 @@
-import { inject, flip } from 'Fjs'
+import { flip, inject } from 'Fjs'
 
 export const initialState = {
 	id: 		0,

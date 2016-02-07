@@ -1,4 +1,4 @@
-import { incr, compose, foldl } from 'Fjs'
+import { compose, incr, foldl } from 'Fjs'
 
 const getHigherId = (acc, {id}) =>
 	Math.max(acc, id)

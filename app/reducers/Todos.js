@@ -1,6 +1,5 @@
 import { initWithSkel as init }		from '../constants/TodoSkel'
 import { getNextId } 			from '../lib/utils'
-import { inject }			from 'Fjs'
 
 import { 
 	ADD_TODO, DELETE_TODO, EDIT_TODO,
