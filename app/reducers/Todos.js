@@ -23,7 +23,7 @@ reducers.DELETE_TODO = (state, action) => {
 reducers.EDIT_TODO = (state, action) => {
 	return state.map(e => 
 			e.id === action.todo.id ?
-				inject (action.newTodo) (e)
+			  inject (action.newTodo) (e)
 			: e
 	)
 }
@@ -32,5 +32,15 @@ reducers.DO_TODO = reducers.EDIT_TODO
 reducers.UNDO_TODO = reducers.EDIT_TODO
 reducers.EDITING_STATE = reducers.EDIT_TODO
 reducers.EDITED_STATE = reducers.EDIT_TODO
+
+reducers.SET_FOCUS = (state, action) => {
+	const setFocus = inject ({focus: true})
+	const unsetFocus = inject ({focus: false})
+	return state.map(e =>
+		action.todo && e.id == action.todo.id ?
+		  setFocus(e)
+		: unsetFocus(e)
+	)
+}
 
 export default reducers
