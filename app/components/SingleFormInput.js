@@ -18,7 +18,7 @@ const SingleFormInput = props => {
 					e.preventDefault()
 					e.target[0].focus()
 					if (props.onSubmit)
-						props.onSubmit(e)
+						props.onSubmit(e.target[0])
 				}
 			}
 		>

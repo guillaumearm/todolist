@@ -9,31 +9,31 @@ export const setFocus = todo => {
 	return create ({type: types.SET_FOCUS, todo})
 }
 
-export const addTodo = text => {
-	return create ({ type: types.ADD_TODO, text })
+export const add = text => {
+	return create ({ type: types.ADD, text })
 }
 
-export const delTodo = todo => {
-	return create ({ type: types.DELETE_TODO, todo })
+export const del = todo => {
+	return create ({ type: types.DELETE, todo })
 }
 
-export const editTodo = (todo, newTodo) => {
+export const edit = (todo, newTodo) => {
 	newTodo.id = todo.id
-	return create ({ type: types.EDIT_TODO, todo, newTodo })
+	return create ({ type: types.EDIT, todo, newTodo })
 }
 
 
-export const editTodoContent = (todo, text) => {
+export const editContent = (todo, text) => {
 	return create ([
-		{ type: types.EDIT_TODO, todo, newTodo: { ...todo, content: text } }
+		{ type: types.EDIT, todo, newTodo: { ...todo, content: text } }
 	])
 }
 
-export const doTodo = todo => {
+export const doIt = todo => {
 	const do_undo =  (
   		!todo.isDone ? 
-  			{ type: types.DO_TODO, todo, newTodo: { ...todo, done: true } }
-			: { type: types.UNDO_TODO, todo, newTodo: { ...todo, done: false } }
+  			{ type: types.DO, todo, newTodo: { ...todo, done: true } }
+			: { type: types.UNDO, todo, newTodo: { ...todo, done: false } }
 	)
 	if (todo.editing)
 		create ([do_undo, setFocus(todo)])
@@ -41,7 +41,7 @@ export const doTodo = todo => {
 		create (do_undo)
 }
 
-export const setEditingTodo = todo => {
+export const setEditing = todo => {
 	return create ([
 		{
  			type: types.EDITING_STATE,
@@ -52,7 +52,10 @@ export const setEditingTodo = todo => {
 	])
 }
 
-export const setEditedTodo = todo => {
-	return create ({ type: types.EDITED_STATE, todo, newTodo: { ...todo, editing: false } })
+export const setEdited = (todo, text) => {
+	return create ([
+		{ type: types.EDITED_STATE, todo, newTodo: { ...todo, editing: false } },
+		editContent (todo, text)
+	])
 }
 
