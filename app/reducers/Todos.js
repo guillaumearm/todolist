@@ -15,9 +15,9 @@ export const DELETE = (state, action) => {
 
 export const EDIT = (state, action) => {
 	return state.map(e => 
-			e.id === action.todo.id ?
-			  inject (action.newTodo) (e)
-			: e
+			 e.id === action.todo.id ?
+			   inject (action.newTodo) (e)
+			 : e
 	)
 }
 

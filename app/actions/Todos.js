@@ -25,20 +25,20 @@ export const edit = (todo, newTodo) => {
 
 export const editContent = (todo, text) => {
 	return create ([
-		{ type: TODOS.EDIT, todo, newTodo: { ...todo, content: text } }
+		{ type: TODOS.EDIT, todo, newTodo: { ...todo, content: text, focus: false } }
 	])
 }
 
 export const doIt = todo => {
 	const do_undo =  (
-  		!todo.isDone ? 
+  		!todo.done ? 
   			{ type: TODOS.DO, todo, newTodo: { ...todo, done: true } }
 			: { type: TODOS.UNDO, todo, newTodo: { ...todo, done: false } }
 	)
 	if (todo.editing)
-		create ([do_undo, setFocus(todo)])
+		return create ([do_undo, setFocus(todo)])
 	else
-		create (do_undo)
+		return create (do_undo)
 }
 
 export const setEditing = todo => {
@@ -54,8 +54,7 @@ export const setEditing = todo => {
 
 export const setEdited = (todo, text) => {
 	return create ([
-		{ type: TODOS.EDITED_STATE, todo, newTodo: { ...todo, editing: false } },
-		editContent (todo, text)
+		{ type: TODOS.EDITED_STATE, todo, newTodo: { ...todo, editing: false } }
 	])
 }
 

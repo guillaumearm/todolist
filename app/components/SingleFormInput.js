@@ -24,7 +24,7 @@ const SingleFormInput = props => {
 		>
 		 	<input type="text" ref={ focus }
 				placeholder={ props.placeholder }
-				onChange={ props.onChange }
+				onChange={ e => { if (props.onChange) props.onChange(e.target) } }
 				value={ props.value }
 			/>
 			{props.noButton ? "" : (<button>{props.buttonValue}</button>)}

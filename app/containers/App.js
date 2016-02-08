@@ -2,19 +2,14 @@ import React from 'react'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 
-import SingleFormInput from '../components/SingleFormInput'
+import TodoList from '../components/TodoList'
 import * as TodosActions from '../actions/Todos'
 
 const App = props => {
-	const form = <SingleFormInput
-		onSubmit={ e => { props.actions.editContent(props.todos[0], e.value) } }
-		buttonValue="add"
-		focus={props.todos[0].focus}
-	/>
-	return	<div>
-	 		<h1>{props.todos[0].content}</h1>
-			{form}
-		</div>
+	return	<TodoList
+			actions={props.actions}
+			todos={props.todos}
+		>Redux todolist</TodoList>
 }
 
 const mapStateToProps = (state) => {

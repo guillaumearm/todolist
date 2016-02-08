@@ -15,8 +15,11 @@ import App from './containers/App'
 // Reducers
 import rootReducer from './reducers'
 
+// initialState
+import { initialState } from './constants/TodoSkel'
+
 render (
-	<Provider store={createStore(rootReducer)}>
+	<Provider store={createStore(rootReducer, [initialState])}>
 		<App />
 	</Provider>
 	, document.getElementById('todoAppContent')

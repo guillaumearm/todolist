@@ -1,4 +1,4 @@
-import { PropTypes }, React from 'react'
+import React, { PropTypes } from 'react'
 import { propTypes as actionsTypes } from '../constants/Todos'
 import { propTypes as stateTypes } from '../constants/TodoSkel'
 import SingleFormInput from './SingleFormInput'
@@ -6,18 +6,17 @@ import SingleFormInput from './SingleFormInput'
 const Todo = props => {
 	const todo = props.children
 	const done = (todo.done ? "[x]" : "[ ]")
-	const entry = {}
+	let entry = {}
 
-	if (props.editing){
-		entry = 
+	if (todo.editing){
+		entry = (
 			<SingleFormInput
 				onSubmit={ e => { props.actions.setEdited(todo, e.value) } }
-				onChange={ e => { props.actions.edit(todo, e.value) } }
+				onChange={ e => { props.actions.editContent(todo, e.value) } }
 				noButton={true}
 				value={todo.content}
 				focus={todo.focus}
-			/>
-		)
+			/>)
 	}
 	else {
 		entry = (
@@ -37,7 +36,6 @@ const Todo = props => {
 }
 
 Todo.propTypes = {
-	editing:	PropTypes.bool,
 	children:	stateTypes.isRequired,
 	actions:	actionsTypes.isRequired
 }
