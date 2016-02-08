@@ -1,3 +1,4 @@
+import { __, apply, compose } from 'Fjs'
 import * as TODOS from '../constants/Todos'
 import { createSubActions } from 'redux-subactions'
 
@@ -5,9 +6,11 @@ const create = createSubActions("TODOS")
 
 // Actions generators
 
-export const add = text => {
-	return create ({ type: TODOS.ADD, text })
-}
+const sleep1 = apply (setTimeout, __, 1000)
+
+export const add = text => dispatch => sleep1 (
+	() => compose (dispatch) (create) ({ type: TODOS.ADD, text })
+)
 
 export const del = todo => {
 	return create ({ type: TODOS.DELETE, todo })
