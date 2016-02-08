@@ -5,7 +5,7 @@ import { reduceByActions }	from 'redux-subactions'
 import { initialState, initWithSkel as init } from '../constants/TodoSkel'
 
 // Todos reducers
-import TODOS from './Todos'
+import * as TODOS from './Todos'
 
 const reducers = { TODOS }
 

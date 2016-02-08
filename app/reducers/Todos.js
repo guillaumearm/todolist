@@ -3,25 +3,17 @@ import { inject } from 'Fjs'
 import { initWithSkel as init }		from '../constants/TodoSkel'
 import { getNextId } 			from '../lib/utils'
 
-import { 
-	ADD, DELETE, EDIT,
-	DO, UNDO,
-	EDITING_STATE, EDITED_STATE
-} 					from '../constants/ActionTypes'
-
-let reducers = {}
-
-reducers.ADD = (state, action) => {
-	let id		= getNextId(state)
-	let content 	= action.text
+export const ADD = (state, action) => {
+	const id	= getNextId(state)
+	const content 	= action.text
 	return [init ({id, content}), ...state]
 }
 
-reducers.DELETE = (state, action) => {
+export const DELETE = (state, action) => {
 	return state.filter(e => e.id !== action.todo.id)
 }
 
-reducers.EDIT = (state, action) => {
+export const EDIT = (state, action) => {
 	return state.map(e => 
 			e.id === action.todo.id ?
 			  inject (action.newTodo) (e)
@@ -29,12 +21,12 @@ reducers.EDIT = (state, action) => {
 	)
 }
 
-reducers.DO = reducers.EDIT
-reducers.UNDO = reducers.EDIT
-reducers.EDITING_STATE = reducers.EDIT
-reducers.EDITED_STATE = reducers.EDIT
+export const DO = EDIT
+export const UNDO = EDIT
+export const EDITING_STATE = EDIT
+export const EDITED_STATE = EDIT
 
-reducers.SET_FOCUS = (state, action) => {
+export const SET_FOCUS = (state, action) => {
 	const setFocus = inject ({focus: true})
 	const unsetFocus = inject ({focus: false})
 
@@ -44,5 +36,3 @@ reducers.SET_FOCUS = (state, action) => {
 		: unsetFocus(e)
 	)
 }
-
-export default reducers

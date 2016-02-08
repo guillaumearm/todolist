@@ -7,7 +7,7 @@ import * as actions from '../actions'
 
 const App = props => {
 	const form = <SingleFormInput
-		onSubmit={ e => { console.log(e.value) ; props.actions.editContent(props.todos[0], e.value) } }
+		onSubmit={ e => { props.actions.editContent(props.todos[0], e.value) } }
 		buttonValue="add"
 		focus={props.todos[0].focus}
 	/>

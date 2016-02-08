@@ -1,7 +1,7 @@
 import * as types from '../constants/ActionTypes'
 import { createSubAction } from 'redux-subactions'
 
-let create = createSubAction("TODOS")
+const create = createSubAction("TODOS")
 
 // Actions generators
 
