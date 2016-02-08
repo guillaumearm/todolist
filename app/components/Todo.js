@@ -38,8 +38,8 @@ const Todo = props => {
 
 Todo.propTypes = {
 	editing:	PropTypes.bool,
-	children:	stateTypes,
-	actions:	actionsTypes
+	children:	stateTypes.isRequired,
+	actions:	actionsTypes.isRequired
 }
 
 export default Todo
