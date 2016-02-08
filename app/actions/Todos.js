@@ -1,39 +1,39 @@
-import * as types from '../constants/ActionTypes'
-import { createSubAction } from 'redux-subactions'
+import * as TODOS from '../constants/Todos'
+import { createSubActions } from 'redux-subactions'
 
-const create = createSubAction("TODOS")
+const create = createSubActions("TODOS")
 
 // Actions generators
 
 export const setFocus = todo => {
-	return create ({type: types.SET_FOCUS, todo})
+	return create ({type: TODOS.SET_FOCUS, todo})
 }
 
 export const add = text => {
-	return create ({ type: types.ADD, text })
+	return create ({ type: TODOS.ADD, text })
 }
 
 export const del = todo => {
-	return create ({ type: types.DELETE, todo })
+	return create ({ type: TODOS.DELETE, todo })
 }
 
 export const edit = (todo, newTodo) => {
 	newTodo.id = todo.id
-	return create ({ type: types.EDIT, todo, newTodo })
+	return create ({ type: TODOS.EDIT, todo, newTodo })
 }
 
 
 export const editContent = (todo, text) => {
 	return create ([
-		{ type: types.EDIT, todo, newTodo: { ...todo, content: text } }
+		{ type: TODOS.EDIT, todo, newTodo: { ...todo, content: text } }
 	])
 }
 
 export const doIt = todo => {
 	const do_undo =  (
   		!todo.isDone ? 
-  			{ type: types.DO, todo, newTodo: { ...todo, done: true } }
-			: { type: types.UNDO, todo, newTodo: { ...todo, done: false } }
+  			{ type: TODOS.DO, todo, newTodo: { ...todo, done: true } }
+			: { type: TODOS.UNDO, todo, newTodo: { ...todo, done: false } }
 	)
 	if (todo.editing)
 		create ([do_undo, setFocus(todo)])
@@ -44,7 +44,7 @@ export const doIt = todo => {
 export const setEditing = todo => {
 	return create ([
 		{
- 			type: types.EDITING_STATE,
+ 			type: TODOS.EDITING_STATE,
 			todo,
 			newTodo: { ...todo, editing: true }
 		},
@@ -54,7 +54,7 @@ export const setEditing = todo => {
 
 export const setEdited = (todo, text) => {
 	return create ([
-		{ type: types.EDITED_STATE, todo, newTodo: { ...todo, editing: false } },
+		{ type: TODOS.EDITED_STATE, todo, newTodo: { ...todo, editing: false } },
 		editContent (todo, text)
 	])
 }

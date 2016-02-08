@@ -1,4 +1,6 @@
 import { PropTypes }, React from 'react'
+import { propTypes as actionsTypes } from '../constants/Todos'
+import { propTypes as stateTypes } from '../constants/TodoSkel'
 import SingleFormInput from './SingleFormInput'
 
 const Todo = props => {
@@ -36,22 +38,8 @@ const Todo = props => {
 
 Todo.propTypes = {
 	editing:	PropTypes.bool,
-
-	children:	PropTypes.shape({
-		id:		PropTypes.number.isRequired,
-		content:	PropTypes.string.isRequired,
-		done:		PropTypes.bool.isRequired,
-		editing:	PropTypes.bool.isRequired,
-		focus:		PropTypes.bool.isRequired
-	}),
-
-	actions:	PropTypes.shape({
-		doIt:		PropTypes.func.isRequired,
-		edit:		PropTypes.func.isRequired,
-		del:		PropTypes.func.isRequired,
-		setEditing:	PropTypes.func.isRequired,
-		setEdited:	PropTypes.func.isRequired
-	})
+	children:	stateTypes,
+	actions:	actionsTypes
 }
 
 export default Todo

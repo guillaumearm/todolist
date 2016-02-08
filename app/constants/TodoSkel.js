@@ -1,3 +1,4 @@
+import { PropTypes } from 'react'
 import { flip, inject } from 'Fjs'
 
 export const initialState = {
@@ -9,3 +10,11 @@ export const initialState = {
 }
 
 export const initWithSkel = flip (inject) (initialState)
+
+export const propTypes = PropTypes.shape({
+	id:		PropTypes.number.isRequired,
+	content:	PropTypes.string.isRequired,
+	done:		PropTypes.bool.isRequired,
+	editing:	PropTypes.bool.isRequired,
+	focus:		PropTypes.bool.isRequired
+})

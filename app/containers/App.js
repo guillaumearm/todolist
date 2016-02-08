@@ -3,7 +3,7 @@ import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 
 import SingleFormInput from '../components/SingleFormInput'
-import * as actions from '../actions'
+import * as TodosActions from '../actions/Todos'
 
 const App = props => {
 	const form = <SingleFormInput
@@ -22,7 +22,7 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispatchToProps = (dispatch) => {
-	return { actions: bindActionCreators(actions, dispatch) }
+	return { actions: bindActionCreators(TodosActions, dispatch) }
 }
 
 export default connect (mapStateToProps, mapDispatchToProps) (App)
