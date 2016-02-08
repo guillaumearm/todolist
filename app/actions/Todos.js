@@ -5,10 +5,6 @@ const create = createSubActions("TODOS")
 
 // Actions generators
 
-export const setFocus = todo => {
-	return create ({type: TODOS.SET_FOCUS, todo})
-}
-
 export const add = text => {
 	return create ({ type: TODOS.ADD, text })
 }
@@ -56,5 +52,9 @@ export const setEdited = (todo, text) => {
 	return create ([
 		{ type: TODOS.EDITED_STATE, todo, newTodo: { ...todo, editing: false } }
 	])
+}
+
+export const setFocus = todo => {
+	return create ({type: TODOS.SET_FOCUS, todo})
 }
 
