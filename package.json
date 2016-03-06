@@ -36,7 +36,9 @@
     "react-redux": "^4.1.2",
     "redux": "^3.1.6",
     "redux-thunk": "^1.0.3",
-    "reselect": "^2.0.3"
+    "reselect": "^2.0.3",
+    "Fjs": "github:guillaumearm/Fjs",
+    "redux-subactions": "github:guillaumearm/redux-subactions#0c69129345f3f8421c06ca797c0490cb0a746a9f"
   },
   "devDependencies": {
     "autoprefixer": "^6.0.3",
@@ -51,7 +53,6 @@
     "css-loader": "^0.19.0",
     "express": "^4.13.3",
     "extract-text-webpack-plugin": "^0.8.2",
-    "Fjs": "github:guillaumearm/Fjs",
     "html-webpack-plugin": "^1.7.0",
     "jsdom": "^6.5.1",
     "jsdom-global": "^1.6.1",
@@ -61,7 +62,6 @@
     "react-addons-test-utils": "^0.14.7",
     "react-transform-hmr": "^1.0.0",
     "redux-devtools": "^3.0.2",
-    "redux-subactions": "github:guillaumearm/redux-subactions",
     "rimraf": "^2.4.3",
     "sinon": "^1.17.3",
     "sinon-chai": "^2.8.0",
