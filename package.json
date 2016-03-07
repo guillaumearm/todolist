@@ -1,14 +1,14 @@
 {
-  "name": "todolist",
-  "version": "0.2.0",
-  "description": "A little todolist project for play with new web stuffs",
+  "name": "testReact",
+  "version": "0.0.1",
+  "description": "testReact",
   "main": "server.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/guillaumearm/todolist.git"
+    "url": "https://github.com/guillaumearm/testReact.git"
   },
   "keywords": [
-    "todolist",
+    "testReact",
     "express",
     "webpack",
     "node"
@@ -16,9 +16,9 @@
   "author": "Guillaume ARM <guillaume.arm@redpelicans.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/guillaumearm/todolist/issues"
+    "url": "https://github.com/guillaumearm/testReact/issues"
   },
-  "homepage": "https://github.com/guillaumearm/todolist",
+  "homepage": "https://github.com/guillaumearm/testReact",
   "scripts": {
     "start": "./node_modules/.bin/babel-node server",
     "clean": "rimraf dist",

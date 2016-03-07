@@ -8,8 +8,6 @@ import webpackHotMiddleware from 'webpack-hot-middleware';
 import config from './webpack.config.js';
 import bodyParser from 'body-parser'
 
-import injectAPI from './api'
-
 const isDeveloping = process.env.NODE_ENV !== 'production';
 const port = process.env.PORT ? process.env.PORT : 8080;
 const app = express();
@@ -47,7 +45,6 @@ if (isDeveloping) {
   });
 }
 
-injectAPI(app);
 app.listen(port, '0.0.0.0', function onStart(err) {
   if (err) {
     console.log(err);
