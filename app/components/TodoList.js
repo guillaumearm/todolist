@@ -6,9 +6,9 @@ import { propTypes as actionTypes } from '../constants/Todos'
 import { propTypes as stateTypes } from '../constants/TodoSkel'
 
 const TodoList = props => {
-	const todos = props.todos.map(todo => { return (
+	const todos = props.todos.map((todo, i) => { return (
 		<Todo
-			key={todo.id}
+			key={i}
 			actions={props.actions}
 			todo={todo}
 		>{todo}</Todo>

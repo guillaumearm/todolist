@@ -8,9 +8,9 @@ const create = createSubActions("TODOS")
 
 const sleep1 = apply (setTimeout, __, 1000)
 
-export const add = text => dispatch => sleep1 (
-	() => compose (dispatch) (create) ({ type: TODOS.ADD, text })
-)
+export const add = text => {
+  return create ({type: TODOS.ADD, text})
+}
 
 export const del = todo => {
 	return create ({ type: TODOS.DELETE, todo })
